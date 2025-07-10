@@ -6,8 +6,15 @@ public:
       {
         sum+=nums[i];
         if(sum>max) max=sum;
-        if(sum<0) sum=0;
-       }
-       return max;
+
+
+        if(sum<0) 
+        {
+    
+            sum=0;
+          
+        }
+      }
+      return max;
     }
 };
