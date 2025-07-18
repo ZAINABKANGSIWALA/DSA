@@ -3,8 +3,10 @@ public:
     void setZeroes(vector<vector<int>>& matrix) {
     int m=matrix.size();
     int n=matrix[0].size();
-   vector<int> row(m,1);
-   vector<int> col(n,1);
+    int col[n];
+    for(int i=0;i<n;i++) col[i]=1;
+    int row[m];
+    for(int j=0;j<m;j++) row[j]=1;
     for(int i=0;i<m;i++)
     {
         for(int j=0;j<n;j++)
@@ -16,6 +18,7 @@ public:
             }
         }
     }
+
     for(int i=0;i<m;i++)
     {
         for(int j=0;j<n;j++)
@@ -25,6 +28,8 @@ public:
                 matrix[i][j]=0;
             }
         }
+
     }
     }
+   
 };
