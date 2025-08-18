@@ -8,36 +8,38 @@ public:
         for(char c : s)
         {
             if(isdigit(c))
-            num = num * 10 + (c - '0');
+            num = num * 10 + (c-'0');
             else if(c=='+')
             {
-                ans+=sign * num;
-                num = 0;
-                sign = 1;
+                ans += num * sign;
+                num =0;
+                sign =1;
             }
-            else if(c == '-')
+            else if(c=='-')
             {
-                ans+=sign * num;
+                ans += num * sign;
                 num = 0;
                 sign = -1;
             }
-            else if(c == '(')
+            else if(c =='(')
             {
                 st.push(ans);
                 st.push(sign);
                 ans = 0;
-                sign = 1;
+                sign =1;
+
             }
-            else if(c == ')')
+            else if(c==')')
             {
-                ans +=sign * num;
-                num = 0;
+                ans += num * sign;
+                num =0;
                 int prevSign = st.top(); st.pop();
                 int prev = st.top(); st.pop();
                 ans = prev + prevSign * ans;
             }
+
         }
-        ans += sign * num;
+        ans += num * sign;
         return ans;
     }
 };
