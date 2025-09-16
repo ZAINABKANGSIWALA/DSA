@@ -1,13 +1,13 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-      unordered_map<char,int> mp;
-      for(int c : magazine) mp[c]++;
-      for(int c : ransomNote)
-      {
-        if(mp[c]==0) return false;
-        mp[c]--;
-      }
-      return true;
+    vector<int> freq(26,0);
+    for(int c:magazine) freq[c-'a']++;
+    for(int c:ransomNote)
+    {
+        if(freq[c-'a']==0) return false;
+        freq[c-'a']--;
+    }
+    return true;
     }
 };
