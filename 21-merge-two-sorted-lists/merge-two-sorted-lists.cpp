@@ -13,58 +13,49 @@ public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         if(!list1) return list2;
         if(!list2) return list1;
+       ListNode *node1=list1;
+       ListNode *node2=list2;
        ListNode *head=NULL;
-        ListNode *node1=list1;
-        ListNode *node2=list2;
-    
-        if(node1->val<node2->val)
+       if(node1 && node2)
+       {
+        if(node1->val < node2->val)
         {
-             head=node1;
-             node1=node1->next;
+            head=node1;
+            node1=node1->next;
         }
-        else 
+        else
         {
             head=node2;
             node2=node2->next;
-        } 
-        
+        }
+       }
         ListNode *node=head;
-        
-        
-        while(node1!=NULL && node2!=NULL)
+        while(node1 && node2)
         {
-            if(node1->val<node2->val){
-                 node->next=node1;
-                
-                 node1=node1->next;
-
+            if(node1->val < node2->val)
+            {
+                node->next=node1;
+                node1=node1->next;
             }
             else 
             {
                 node->next=node2;
-                
                 node2=node2->next;
             }
-        
             node=node->next;
         }
-            while(node1!=NULL)
-            {
-                node->next=node1;
-                node=node->next;
-                node1=node1->next;
-
-            }
-            while(node2!=NULL)
-            {
-                node->next=node2;
-                node=node->next;
-                node2=node2->next;
-            }
-
-            
-        
-        return head;
-
+        while(node1)
+        {
+            node->next=node1;
+            node1=node1->next;
+            node=node->next;
+        }
+        while(node2)
+        {
+            node->next=node2;
+            node2=node2->next;
+            node=node->next;
+        }
+        return head;       
     }
 };
