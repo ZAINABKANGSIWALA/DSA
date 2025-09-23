@@ -18,7 +18,7 @@ public:
          if(current < mp[s[i+1]]) total -= current;
          else total += current;
         }
-        total += mp[s[i]];
+       
         return total;
     }
 };
