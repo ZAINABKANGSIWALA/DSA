@@ -11,51 +11,37 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        if(!list1) return list2;
-        if(!list2) return list1;
-       ListNode *node1=list1;
-       ListNode *node2=list2;
-       ListNode *head=NULL;
-       if(node1 && node2)
+       if(!list1) return list2;
+       if(!list2) return list1;
+       ListNode *t1=list1, *t2=list2, *head=NULL;
+       if(t1->val < t2->val)
        {
-        if(node1->val < node2->val)
+        head=t1;
+        t1=t1->next;
+       }
+       else
+       {
+        head=t2;
+        t2=t2->next;
+       }
+       ListNode *node =head;
+       while(t1 && t2)
+       {
+        if(t1->val < t2->val)
         {
-            head=node1;
-            node1=node1->next;
+            node->next=t1;
+            t1=t1->next;
+            node=node->next;
         }
-        else
+        else 
         {
-            head=node2;
-            node2=node2->next;
+            node->next=t2;
+            t2=t2->next;
+            node=node->next;
         }
        }
-        ListNode *node=head;
-        while(node1 && node2)
-        {
-            if(node1->val < node2->val)
-            {
-                node->next=node1;
-                node1=node1->next;
-            }
-            else 
-            {
-                node->next=node2;
-                node2=node2->next;
-            }
-            node=node->next;
-        }
-        while(node1)
-        {
-            node->next=node1;
-            node1=node1->next;
-            node=node->next;
-        }
-        while(node2)
-        {
-            node->next=node2;
-            node2=node2->next;
-            node=node->next;
-        }
-        return head;       
+       if(t1) node->next=t1;
+       if(t2) node->next=t2;
+       return head;
     }
 };
