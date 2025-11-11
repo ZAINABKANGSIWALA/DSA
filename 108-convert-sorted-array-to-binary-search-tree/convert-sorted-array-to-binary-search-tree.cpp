@@ -16,7 +16,7 @@ public:
     }
     TreeNode *helper(vector<int> nums, int left, int right)
     {
-        if(left > right) return NULL;
+        if(left > right) return nullptr;
         int mid = left+(right-left)/2;
         TreeNode *root = new TreeNode(nums[mid]);
         root->left = helper(nums, left, mid-1);
