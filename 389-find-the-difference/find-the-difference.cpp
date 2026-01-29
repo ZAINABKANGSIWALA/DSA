@@ -7,6 +7,6 @@ public:
         {
             if(s[i]!=t[i]) return t[i];
         }
-        return t[0];
+        return 'a';
     }
 };
