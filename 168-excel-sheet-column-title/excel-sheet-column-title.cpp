@@ -6,10 +6,10 @@ public:
        {
         columnNumber--;
         char ch = 'A'+(columnNumber%26);
-        res+=ch;
+        res= ch+res;
         columnNumber/=26;
        }
-       reverse(res.begin(),res.end());
+       //reverse(res.begin(),res.end());
        return res;
 
 
