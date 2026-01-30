@@ -1,27 +1,29 @@
 class Solution {
 public:
     bool wordPattern(string pattern, string s) {
-        stringstream ss(s);
         string word;
+        stringstream ss(s);
         vector<string> words;
-        while(ss >> word) words.push_back(word);
+        while(ss>>word) words.push_back(word);
         if(words.size()!=pattern.size()) return false;
-        unordered_map<char,string> mp;
-        unordered_map<string,char> rev;
+        unordered_map<char,string> charToWord;
+        unordered_map<string,char> wordToChar;
         for(int i=0;i<words.size();i++)
         {
-            char ch=pattern[i];
-            string curr=words[i];
-            if(mp.find(ch)==mp.end() && rev.find(curr)==rev.end())
+            char ch = pattern[i];
+            word=words[i];
+            if(charToWord.find(ch)==charToWord.end() && wordToChar.find(word)==wordToChar.end()) 
             {
-                mp[ch]=curr;
-                rev[curr]=ch;
+                charToWord[ch]=word;
+                wordToChar[word]=ch;
             }
-            else
+            else 
             {
-                if(mp[ch]!=curr || rev[curr]!=ch) return false;
+                if(charToWord[ch]!=word || wordToChar[word]!=ch) return false;
             }
         }
         return true;
+        
+
     }
 };
