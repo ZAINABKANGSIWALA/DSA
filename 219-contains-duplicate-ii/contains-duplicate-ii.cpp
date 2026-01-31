@@ -7,11 +7,9 @@ public:
             if(mp.find(nums[i])!=mp.end() && k>=abs(mp[nums[i]]-i))
             {
                 return true;
+
             }
-            else 
-            {
-                mp[nums[i]]=i;
-            }
+            else mp[nums[i]]=i;
         }
         return false;
     }
