@@ -8,10 +8,10 @@ public:
         int dx = 1;
         int dy = 0;
         vector<int> res;
-        for(int i=0;i<rows*cols;i++)
+        for(int i=0;i<rows*cols; i++)
         {
             res.push_back(matrix[y][x]);
-            matrix[y][x]=-101;
+            matrix[y][x] = -101;
             if(!(0<=x+dx && x+dx<cols && 0<=y+dy && y+dy<rows) || matrix[y+dy][x+dx]==-101)
             {
                 int temp = dx;
