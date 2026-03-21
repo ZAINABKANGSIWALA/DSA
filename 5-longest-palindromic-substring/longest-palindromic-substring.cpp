@@ -1,27 +1,42 @@
 class Solution {
 public:
-    bool isPallindrome(const string &s, int i,int j)
-    {
-        while(i<j)
-        {
-            if(s[i]!=s[j]) return false;
-            i++;
-            j--;
-        }
-        return true;
-
-    }
     string longestPalindrome(string s) {
-        int n= s.size();
-        for(int len=n;len>=1;len--)
+        string t="#";
+        for(char c : s)
         {
-            for(int i=0;i+len-1<n;i++)
-            {
-                int j=i+len-1;
-                if(isPallindrome(s,i,j)) return s.substr(i,len);
-            }
-
+            t+=c;
+            t+='#';
         }
-        return "";
+        int n=t.size();
+        int center = 0, right= 0;
+        vector<int> p(n,0);
+        for(int i=0;i<n;i++)
+        {
+            int mirror=2*center-i;
+            if(i<right)
+            {
+                p[i]=min(right-i,p[mirror]);
+            }
+            while(i+p[i]+1<n && i-p[i]-1>=0 && t[i+p[i]+1]==t[i-p[i]-1]) p[i]++;
+            if(i+p[i] > right)
+            {
+                center=i;
+                right=i+p[i];
+            }
+            
+        }
+        int maxLen=0;
+        int centerIdx=0;
+        for(int i=0;i<n;i++)
+        {
+            if(p[i]>maxLen)
+            {
+                centerIdx=i;
+                maxLen=p[i];
+            }
+        
+        }
+        int start=(centerIdx-maxLen)/2;
+        return s.substr(start,maxLen);
     }
 };
