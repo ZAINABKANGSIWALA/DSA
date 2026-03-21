@@ -7,36 +7,35 @@ public:
             t+=c;
             t+='#';
         }
+        int center=0, right=0;
         int n=t.size();
-        int center = 0, right= 0;
         vector<int> p(n,0);
         for(int i=0;i<n;i++)
         {
             int mirror=2*center-i;
             if(i<right)
             {
-                p[i]=min(right-i,p[mirror]);
+                p[i]=min(p[mirror],right-i);
             }
-            while(i+p[i]+1<n && i-p[i]-1>=0 && t[i+p[i]+1]==t[i-p[i]-1]) p[i]++;
-            if(i+p[i] > right)
+            while(i+p[i]+1<n && i-p[i]-1 >=0 && t[i+p[i]+1]==t[i-p[i]-1]) p[i]++;
+            if(p[i]+i > right)
             {
                 center=i;
                 right=i+p[i];
             }
-            
         }
-        int maxLen=0;
-        int centerIdx=0;
+
+        int maxlen=0, centerIdx=0;
         for(int i=0;i<n;i++)
         {
-            if(p[i]>maxLen)
+            if(p[i]>maxlen)
             {
+                maxlen=p[i];
                 centerIdx=i;
-                maxLen=p[i];
             }
-        
+
         }
-        int start=(centerIdx-maxLen)/2;
-        return s.substr(start,maxLen);
+        int start=(centerIdx-maxlen)/2;
+        return s.substr(start,maxlen);
     }
 };
